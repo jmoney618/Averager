@@ -11,6 +11,7 @@ namespace Averager
     {
         static void Main(string[] args)
         {
+            // Create array that will store numbers user inputs
             double[] numbers = { };
 
             while (true)
@@ -21,8 +22,13 @@ namespace Averager
                     Console.Write("Enter a number or type \'done\' to get the average: ");
                     var input = Console.ReadLine();
 
-                    // Validate is user wants to quit
-                    if (input.ToLower() == "done" && numbers.Length == 0)
+                    // Validate if user wants to quit
+                    if (input.ToLower() == "done")
+                    {
+                        Console.WriteLine("You really didn\'t want to use this app did you?");
+                        return;
+                    }
+                    else if (input.ToLower() == "done" && numbers.Length == 0)
                     {
                         Console.WriteLine("You really didn\'t want to use this app did you?");
                         Console.Write("Enter any key to quit.");
@@ -30,12 +36,12 @@ namespace Averager
                     }
                     else
                     {
-
+                        numbers[0] = int.Parse(input);
                     }
                 }
-                catch
+                catch (FormatException)
                 {
-
+                    Console.WriteLine("That was not a valid entry.");
                 }
             }
         }
