@@ -12,7 +12,7 @@ namespace Averager
         static void Main(string[] args)
         {
             // Create array that will store numbers user inputs
-            double[] numbers = { };
+            List<double> numbers = new List<double>();
 
             while (true)
             {
@@ -23,20 +23,23 @@ namespace Averager
                     var input = Console.ReadLine();
 
                     // Validate if user wants to quit
-                    if (input.ToLower() == "done")
-                    {
-                        Console.WriteLine("You really didn\'t want to use this app did you?");
-                        return;
-                    }
-                    else if (input.ToLower() == "done" && numbers.Length == 0)
+                    if (input.ToLower() == "done" && numbers.Count == 0)
                     {
                         Console.WriteLine("You really didn\'t want to use this app did you?");
                         Console.Write("Enter any key to quit.");
-                        return;
+                        break;
+                    }
+                    else if (input.ToLower() == "done")
+                    {
+                        Console.WriteLine("You really didn\'t want to use this app did you?");
+                        break;
                     }
                     else
                     {
-                        numbers[0] = int.Parse(input);
+                        // Convert input into a decimal number and add it to the List
+                        numbers.Add(double.Parse(input));
+                        // Call CalcAverage method and output result to the user
+                        Console.WriteLine("The average for the {0} numbers entered is {1}.", numbers.Count, CalcAverage(numbers));
                     }
                 }
                 catch (FormatException)
@@ -46,16 +49,16 @@ namespace Averager
             }
         }
 
-        public double Average(double[] numbers)
+        public static double CalcAverage(List<double> numbers)
         {
-            double total = 0.0;
-            double average = 0.0;
-            foreach(double number in numbers)
+            double _total = 0.0;
+            double _average = 0.0;
+            foreach(double num in numbers)
             {
-                total += number;
+                _total += num;
             }
 
-            return average = total / numbers.Length;
+            return _average = _total / numbers.Count;
         }
     }
 }
