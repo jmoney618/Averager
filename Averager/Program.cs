@@ -11,7 +11,7 @@ namespace Averager
     {
         static void Main(string[] args)
         {
-            // Create array that will store numbers user inputs
+            // Create array that will store numbers the user inputs
             List<double> numbers = new List<double>();
 
             while (true)
@@ -23,7 +23,7 @@ namespace Averager
                     var input = Console.ReadLine();
 
                     // Validate if user wants to quit
-                    if (input.ToLower() == "done" && numbers.Count == 0)
+                    if (input.ToLower() == "done" && numbers.Count < 1)
                     {
                         Console.WriteLine("You really didn\'t want to use this app did you?");
                         Console.Write("Enter any key to quit.");
@@ -31,8 +31,13 @@ namespace Averager
                     }
                     else if (input.ToLower() == "done")
                     {
-                        Console.WriteLine("You really didn\'t want to use this app did you?");
+                        Console.WriteLine("Thank you for using the Averager!");
+                        Console.Write("Hit any key to quit.");
                         break;
+                    }
+                    else if (input.ToLower() != "done" || !(input is int) || !(input is double) )
+                    {
+                        throw new InvalidInputTypeException("That is not a valid entry.");
                     }
                     else
                     {
@@ -47,6 +52,8 @@ namespace Averager
                     Console.WriteLine("That was not a valid entry.");
                 }
             }
+
+            Console.ReadLine();
         }
 
         public static double CalcAverage(List<double> numbers)
