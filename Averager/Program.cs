@@ -37,7 +37,7 @@ namespace Averager
                     }
                     else if (input.ToLower() != "done" || !(input is int) || !(input is double) )
                     {
-                        throw new InvalidInputTypeException("That is not a valid entry.");
+                        throw InvalidInputTypeException();
                     }
                     else
                     {

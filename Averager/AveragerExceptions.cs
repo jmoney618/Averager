@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace Averager
 {
-    class InvalidInputTypeException : Exception
+    class AveragerExceptions : Exception
     {
-        private InvalidInputTypeException() : base() { }
+        private AveragerExceptions() : base() { }
 
-        public InvalidInputTypeException(string message) : base(message)
+        public AveragerExceptions(string message) : base(message) { }
+
+        public AveragerExceptions(string message, Exception inner) : base(message, inner) { }
+
+        public static void InvalidInputTypeException()
         {
-
-        }
-
-        public InvalidInputTypeException(string message, Exception inner) : base(message, inner)
-        {
-
+            Console.WriteLine("Invalid input type.");
         }
     }
 }
