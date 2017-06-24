@@ -56,16 +56,6 @@ namespace Averager
             Console.ReadLine();
         }
 
-        public static double CalcAverage(List<double> numbers)
-        {
-            double _total = 0.0;
-            double _average = 0.0;
-            foreach(double num in numbers)
-            {
-                _total += num;
-            }
-
-            return _average = _total / numbers.Count;
-        }
+        
     }
 }
