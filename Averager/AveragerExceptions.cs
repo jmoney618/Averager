@@ -8,9 +8,9 @@ namespace Averager
 {
     class AveragerExceptions : Exception
     {
-        public static void InvalidInputTypeException()
+        public static Exception InvalidInputTypeException()
         {
-            Console.WriteLine("Invalid input.");
+            throw new FormatException("Invalid input.");
         }
     }
 }

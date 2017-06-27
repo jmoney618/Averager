@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static System.Console;
 
 namespace Averager
@@ -11,9 +8,9 @@ namespace Averager
     {
         static void Main(string[] args)
         {
-            // Create array that will store numbers the user inputs
+            // Create list that will store numbers the user inputs
             List<double> numbers = new List<double>();
-
+            
             while (true)
             {
                 try
@@ -25,37 +22,34 @@ namespace Averager
                     // Validate if user wants to quit
                     if (input.ToLower() == "done" && numbers.Count < 1)
                     {
-                        Console.WriteLine("You really didn\'t want to use this app did you?");
-                        Console.Write("Enter any key to quit.");
+                        WriteLine("You really didn\'t want to use this app did you?");
+                        Write("Enter any key to quit.");
                         break;
                     }
                     else if (input.ToLower() == "done")
                     {
-                        Console.WriteLine("Thank you for using the Averager!");
-                        Console.Write("Hit any key to quit.");
+                        WriteLine("Thank you for using the Averager!");
+                        Write("Hit any key to quit.");
                         break;
                     }
-                    else if (input.ToLower() != "done" || !(input is int) || !(input is double) )
+                    else if (input.ToLower() != "done" || input is string )
                     {
-                        throw InvalidInputTypeException();
+                        throw AveragerExceptions.InvalidInputTypeException();
                     }
                     else
                     {
                         // Convert input into a decimal number and add it to the List
                         numbers.Add(double.Parse(input));
                         // Call CalcAverage method and output result to the user
-                        Console.WriteLine("The average for the {0} numbers entered is {1}.", numbers.Count, CalcAverage(numbers));
+                        WriteLine("The average for the {0} numbers entered is {1}.", numbers.Count, Calculate.CalcAverage(numbers));
                     }
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("That was not a valid entry.");
+                    WriteLine("That was not a valid entry.");
                 }
             }
-
-            Console.ReadLine();
+            ReadLine();
         }
-
-        
     }
 }
