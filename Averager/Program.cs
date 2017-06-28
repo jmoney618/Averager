@@ -32,7 +32,7 @@ namespace Averager
                         Write("Hit any key to quit.");
                         break;
                     }
-                    else if (input.ToLower() != "done" || input is string )
+                    else if (input.ToLower() != "done" && !(input is string) && !(input is int) && !(input is double) )
                     {
                         throw AveragerExceptions.InvalidInputTypeException();
                     }
